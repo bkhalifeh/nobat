@@ -28,11 +28,10 @@ import throttleFactory from './factory/throttle.factory';
         ThrottlerModule.forRootAsync({
             imports: [ConfigModule],
             useFactory: throttleFactory,
-            inject: [ConfigService]
-        })
+            inject: [ConfigService],
+        }),
     ],
     controllers: [AppController],
     providers: [AppService],
 })
 export class AppModule {}
-
