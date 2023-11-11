@@ -8,6 +8,9 @@ async function bootstrap() {
 
     const configService = app.get(ConfigService);
 
+    app.enableCors();
+    app.disable('x-powered-by');
+
     await app.listen(
         configService.get<number>('APP_PORT'),
         configService.get<string>('APP_HOST'),
