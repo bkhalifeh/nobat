@@ -11,6 +11,7 @@ import {
 } from '@nestjs/cache-manager';
 import redisFactory from './factory/redis.factory';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { UserModule } from './user/user.module';
 import throttleFactory from './factory/throttle.factory';
 @Module({
     imports: [
@@ -30,6 +31,7 @@ import throttleFactory from './factory/throttle.factory';
             useFactory: throttleFactory,
             inject: [ConfigService],
         }),
+        UserModule,
     ],
     controllers: [AppController],
     providers: [AppService],
