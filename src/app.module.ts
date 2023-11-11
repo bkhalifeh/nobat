@@ -10,21 +10,29 @@ import {
     CacheStore,
 } from '@nestjs/cache-manager';
 import redisFactory from './factory/redis.factory';
+import { ThrottlerModule } from '@nestjs/throttler';
+import throttleFactory from './factory/throttle.factory';
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
         TypeOrmModule.forRootAsync({
+            imports: [ConfigModule],
             useFactory: typeormFactory,
             inject: [ConfigService],
         }),
-
         CacheModule.registerAsync({
             imports: [ConfigModule],
             useFactory: redisFactory,
             inject: [ConfigService],
         }),
+        ThrottlerModule.forRootAsync({
+            imports: [ConfigModule],
+            useFactory: throttleFactory,
+            inject: [ConfigService]
+        })
     ],
     controllers: [AppController],
     providers: [AppService],
 })
 export class AppModule {}
+
