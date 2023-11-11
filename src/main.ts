@@ -4,6 +4,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
+import morgan from 'morgan';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
@@ -14,7 +15,7 @@ async function bootstrap() {
     app.enableCors();
     app.disable('x-powered-by');
     app.useGlobalPipes(new ValidationPipe());
-
+    app.use(morgan('dev'));
     app.use(helmet());
 
     const config = new DocumentBuilder()
