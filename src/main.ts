@@ -19,8 +19,8 @@ async function bootstrap() {
         () => {
             console.log(
                 `Start on ${configService.get<number>(
-                    'APP_PORT',
-                )}:${configService.get<string>('APP_HOST')}`,
+                    'APP_HOST',
+                )}:${configService.get<string>('APP_PORT')}`,
             );
         },
     );
