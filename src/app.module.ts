@@ -12,6 +12,7 @@ import {
 import redisFactory from './factory/redis.factory';
 import { ThrottlerModule } from '@nestjs/throttler';
 import { UserModule } from './user/user.module';
+import { UtilModule } from './util/util.module';
 import throttleFactory from './factory/throttle.factory';
 @Module({
     imports: [
@@ -32,6 +33,7 @@ import throttleFactory from './factory/throttle.factory';
             inject: [ConfigService],
         }),
         UserModule,
+        UtilModule,
     ],
     controllers: [AppController],
     providers: [AppService],
