@@ -17,6 +17,7 @@ import throttleFactory from './factory/throttle.factory';
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
+        UtilModule,
         TypeOrmModule.forRootAsync({
             imports: [ConfigModule],
             useFactory: typeormFactory,
@@ -32,8 +33,9 @@ import throttleFactory from './factory/throttle.factory';
             useFactory: throttleFactory,
             inject: [ConfigService],
         }),
+        
         UserModule,
-        UtilModule,
+        
     ],
     controllers: [AppController],
     providers: [AppService],
