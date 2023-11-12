@@ -1,8 +1,8 @@
-import { Entity, ObjectId } from "typeorm";
-import PkId from 'src/util/database/pk.id';
+import { IdColumn, IdType } from "src/util/database";
+import { Entity } from "typeorm";
 
 @Entity()
 export class User {
-    @PkId()
-    id: ObjectId | number;
+    @IdColumn()
+    id: IdType;
 }

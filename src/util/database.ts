@@ -1,7 +1,7 @@
-import { ObjectIdColumn, PrimaryGeneratedColumn } from "typeorm";
-import { UtilService } from "../util.service";
+import { ObjectId, ObjectIdColumn, PrimaryGeneratedColumn } from "typeorm";
+import { UtilService } from "./util.service";
 
-export default () => {
+export function IdColumn() {
     if (UtilService.DB_TYPE === 'mongodb') {
         return ObjectIdColumn({ name: '_id' });
     } else {
@@ -12,3 +12,5 @@ export default () => {
         });
     }
 }
+
+export type IdType = number | ObjectId;
