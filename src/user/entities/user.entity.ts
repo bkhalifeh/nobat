@@ -1,11 +1,10 @@
 import { IdColumn, IdType } from 'src/util/database';
-import { UtilService } from 'src/util/util.service';
-import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm';
+import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class User {
     @IdColumn()
-    id: ObjectId;
+    id: IdType;
 
     @Column()
     phoneNumber: string;
