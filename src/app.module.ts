@@ -14,6 +14,7 @@ import { ThrottlerModule } from '@nestjs/throttler';
 import { UserModule } from './user/user.module';
 import { UtilModule } from './util/util.module';
 import { AuthModule } from './auth/auth.module';
+import { SmsModule } from './sms/sms.module';
 import throttleFactory from './factory/throttle.factory';
 @Module({
     imports: [
@@ -38,6 +39,8 @@ import throttleFactory from './factory/throttle.factory';
         UserModule,
 
         AuthModule,
+
+        SmsModule,
     ],
     controllers: [AppController],
     providers: [AppService],
