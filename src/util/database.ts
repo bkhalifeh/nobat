@@ -1,8 +1,8 @@
-import { ObjectId, ObjectIdColumn, PrimaryGeneratedColumn } from "typeorm";
-import { UtilService } from "./util.service";
+import { ObjectId, ObjectIdColumn, PrimaryGeneratedColumn } from 'typeorm';
+import 'dotenv/config';
 
 export function IdColumn() {
-    if (UtilService.DB_TYPE === 'mongodb') {
+    if (process.env.DB_TYPE === 'mongodb') {
         return ObjectIdColumn({ name: '_id' });
     } else {
         return PrimaryGeneratedColumn({
