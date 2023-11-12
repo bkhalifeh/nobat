@@ -33,9 +33,8 @@ import throttleFactory from './factory/throttle.factory';
             useFactory: throttleFactory,
             inject: [ConfigService],
         }),
-        
+
         UserModule,
-        
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -12,7 +12,7 @@ export default (
     | PostgresConnectionOptions
     | SqliteConnectionOptions
     | MysqlConnectionOptions => {
-    const entities = [ User ];
+    const entities = [User];
     const dbType = configService.get<string>('DB_TYPE');
     if (dbType === 'sqlite') {
         return {
