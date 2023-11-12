@@ -8,17 +8,21 @@ import { IdType } from 'src/util/database';
 
 @Injectable()
 export class UserService {
-    constructor(    @InjectRepository(User)
-    private usersRepository: Repository<User>,) {
-
-    }
+    constructor(
+        @InjectRepository(User)
+        private usersRepository: Repository<User>,
+    ) {}
     create(createUserDto: CreateUserDto) {
         return 'This action adds a new user';
     }
 
     findOne(id: IdType) {
-        return this.usersRepository.findOneBy({ id });
+        // return this.usersRepository.findOneBy({ id });
     }
 
-
+    work() {
+        const newUser = new User();
+        newUser.phoneNumber = '+989179056283';
+        this.usersRepository.save(newUser);
+    }
 }
