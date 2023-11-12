@@ -6,6 +6,12 @@ export class User {
     @IdColumn()
     id: IdType;
 
-    @Column()
+    @Column({ unique: true })
     phoneNumber: string;
+
+    @Column()
+    firstName: string;
+
+    @Column()
+    lastName: string;
 }
