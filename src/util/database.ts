@@ -13,4 +13,4 @@ export function IdColumn() {
     }
 }
 
-export type IdType = number | ObjectId;
+export type IdType = number | ObjectId | string;
