@@ -6,7 +6,7 @@ import { Turn } from './entities/turn.entity';
 
 @Module({
     imports: [TypeOrmModule.forFeature([Turn])],
-  controllers: [TurnController],
-  providers: [TurnService]
+    controllers: [TurnController],
+    providers: [TurnService],
 })
 export class TurnModule {}

@@ -22,7 +22,7 @@ export default (
             database: configService.get<string>('DB_NAME'),
             synchronize: false,
             entities,
-            logging: "all"
+            logging: 'all',
         };
     } else if (
         dbType === 'mysql' ||
@@ -38,7 +38,7 @@ export default (
             password: configService.get<string>('DB_PASS'),
             synchronize: false,
             entities,
-            logging: "all"
+            logging: 'all',
         };
     } else {
         throw new Error('Invalid DB_TYPE');

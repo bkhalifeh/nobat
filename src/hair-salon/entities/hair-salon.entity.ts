@@ -12,5 +12,5 @@ export class HairSalon extends CustomeEntity {
     turns: Turn[];
 
     @OneToOne(() => User, (user) => user.hairSalon)
-    user: User
+    user: User;
 }

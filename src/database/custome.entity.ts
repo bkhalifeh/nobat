@@ -1,4 +1,4 @@
-import { IdColumn, IdType } from "./custome.id";
+import { IdColumn, IdType } from './custome.id';
 
 export abstract class CustomeEntity {
     @IdColumn()

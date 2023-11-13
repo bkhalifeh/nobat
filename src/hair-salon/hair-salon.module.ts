@@ -6,7 +6,7 @@ import { HairSalon } from './entities/hair-salon.entity';
 
 @Module({
     imports: [TypeOrmModule.forFeature([HairSalon])],
-  controllers: [HairSalonController],
-  providers: [HairSalonService]
+    controllers: [HairSalonController],
+    providers: [HairSalonService],
 })
 export class HairSalonModule {}
