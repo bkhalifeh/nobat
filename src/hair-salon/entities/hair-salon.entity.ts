@@ -1,6 +1,7 @@
 import { CustomeEntity } from 'src/database/custome.entity';
 import { Turn } from 'src/turn/entities/turn.entity';
-import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
+import { User } from 'src/user/entities/user.entity';
+import { Column, Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 @Entity()
 export class HairSalon extends CustomeEntity {
@@ -9,4 +10,7 @@ export class HairSalon extends CustomeEntity {
 
     @OneToMany(() => Turn, (turn) => turn.hairSalon)
     turns: Turn[]
+
+    @OneToOne(() => User, (user) => user.hairSalon)
+    user: User
 }
