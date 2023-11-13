@@ -1,5 +1,6 @@
 import { CustomeEntity } from 'src/database/custome.entity';
-import { Column, Entity } from 'typeorm';
+import { Turn } from 'src/turn/entities/turn.entity';
+import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class User extends CustomeEntity {
@@ -12,4 +13,7 @@ export class User extends CustomeEntity {
 
     @Column()
     lastName: string;
+
+    @OneToMany(() => Turn, (turn) => turn.user)
+    turns: Turn[]
 }
