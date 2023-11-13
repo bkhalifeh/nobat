@@ -16,6 +16,7 @@ import { UtilModule } from './util/util.module';
 import { AuthModule } from './auth/auth.module';
 import { SmsModule } from './sms/sms.module';
 import { TurnModule } from './turn/turn.module';
+import { HairSalonModule } from './hair-salon/hair-salon.module';
 import throttleFactory from './factory/throttle.factory';
 @Module({
     imports: [
@@ -44,6 +45,8 @@ import throttleFactory from './factory/throttle.factory';
         SmsModule,
 
         TurnModule,
+
+        HairSalonModule,
     ],
     controllers: [AppController],
     providers: [AppService],
