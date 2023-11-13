@@ -5,11 +5,11 @@ import { Column, Entity, ManyToOne, OneToMany, OneToOne } from 'typeorm';
 
 @Entity()
 export class HairSalon extends CustomeEntity {
-    @Column()
+    @Column({ unique: true })
     name: string;
 
     @OneToMany(() => Turn, (turn) => turn.hairSalon)
-    turns: Turn[]
+    turns: Turn[];
 
     @OneToOne(() => User, (user) => user.hairSalon)
     user: User

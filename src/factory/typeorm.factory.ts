@@ -20,7 +20,7 @@ export default (
         return {
             type: dbType,
             database: configService.get<string>('DB_NAME'),
-            synchronize: true,
+            synchronize: false,
             entities,
             logging: "all"
         };
@@ -36,7 +36,7 @@ export default (
             port: configService.get<number>('DB_PORT'),
             username: configService.get<string>('DB_USER'),
             password: configService.get<string>('DB_PASS'),
-            synchronize: true,
+            synchronize: false,
             entities,
             logging: "all"
         };

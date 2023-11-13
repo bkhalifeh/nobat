@@ -21,10 +21,4 @@ export class User extends CustomeEntity {
     @OneToOne(() => HairSalon, (hairSalon) => hairSalon.user, { nullable: true })
     @JoinColumn()
     hairSalon: HairSalon;
-
-    constructor() {
-        super();
-        this.turns = [];
-        this.hairSalon = null;
-    }
 }

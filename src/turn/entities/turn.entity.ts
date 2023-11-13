@@ -13,9 +13,4 @@ export class Turn extends CustomeEntity {
 
     @ManyToOne(() => HairSalon, (hairSalon) => hairSalon.turns)
     hairSalon: HairSalon;
-
-    constructor() {
-        super();
-        this.user = null;
-    }
 }
