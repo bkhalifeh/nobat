@@ -16,4 +16,9 @@ export class User extends CustomeEntity {
 
     @OneToMany(() => Turn, (turn) => turn.user)
     turns: Turn[]
+
+    constructor() {
+        super();
+        this.turns = [];
+    }
 }

@@ -5,6 +5,7 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 import { MongoConnectionOptions } from 'typeorm/driver/mongodb/MongoConnectionOptions';
 import { User } from 'src/user/entities/user.entity';
 import { Turn } from 'src/turn/entities/turn.entity';
+import { HairSalon } from 'src/hair-salon/entities/hair-salon.entity';
 
 export default (
     configService: ConfigService,
@@ -13,7 +14,7 @@ export default (
     | PostgresConnectionOptions
     | SqliteConnectionOptions
     | MysqlConnectionOptions => {
-    const entities = [User, Turn];
+    const entities = [User, Turn, HairSalon];
     const dbType = configService.get<string>('DB_TYPE');
     if (dbType === 'sqlite') {
         return {
