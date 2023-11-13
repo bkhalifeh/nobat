@@ -27,25 +27,20 @@ import throttleFactory from './factory/throttle.factory';
             useFactory: typeormFactory,
             inject: [ConfigService],
         }),
-        CacheModule.registerAsync({
-            imports: [ConfigModule],
-            useFactory: redisFactory,
-            inject: [ConfigService],
-        }),
+        // CacheModule.registerAsync({
+        //     imports: [ConfigModule],
+        //     useFactory: redisFactory,
+        //     inject: [ConfigService],
+        // }),
         ThrottlerModule.forRootAsync({
             imports: [ConfigModule],
             useFactory: throttleFactory,
             inject: [ConfigService],
         }),
-
         UserModule,
-
         AuthModule,
-
         SmsModule,
-
         TurnModule,
-
         HairSalonModule,
     ],
     controllers: [AppController],
