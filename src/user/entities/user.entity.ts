@@ -22,6 +22,9 @@ export class User extends CustomeEntity {
     @Column()
     lastName: string;
 
+    @Column({ default: false })
+    isVerified: boolean;
+
     @OneToMany(() => Turn, (turn) => turn.user)
     turns: Turn[];
 
