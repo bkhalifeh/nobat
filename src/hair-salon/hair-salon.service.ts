@@ -42,13 +42,13 @@ export class HairSalonService {
     findOne(id: IdType) {
         return this.hairSalonRepository.findOne({
             where: {
-                id
+                id,
             },
             relations: {
                 comments: true,
                 turns: true,
-                user: true
-            }
+                user: true,
+            },
         });
     }
 
