@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreatedHairSalon {
+export class LimitedHairSalon {
     @ApiProperty({
         example: 1,
     })

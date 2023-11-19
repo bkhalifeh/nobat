@@ -6,14 +6,24 @@ import {
     Patch,
     Param,
     Delete,
+    UseGuards,
+    Req,
 } from '@nestjs/common';
 import { HairSalonService } from './hair-salon.service';
 import { CreateHairSalonDto } from './dto/create-hair-salon.dto';
 import { UpdateHairSalonDto } from './dto/update-hair-salon.dto';
 import { FormDataRequest } from 'nestjs-form-data';
-import { ApiBody, ApiConsumes, ApiOperation, ApiTags, ApiCreatedResponse } from '@nestjs/swagger';
+import {
+    ApiBody,
+    ApiConsumes,
+    ApiOperation,
+    ApiTags,
+    ApiCreatedResponse,
+    ApiOkResponse,
+} from '@nestjs/swagger';
 import { HairSalon } from './entities/hair-salon.entity';
 import { CreatedHairSalon } from './responses/success/created.hair-salon';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('hair-salon')
 @Controller('hair-salon')
@@ -22,8 +32,7 @@ export class HairSalonController {
 
     @ApiOperation({
         summary: 'Establishing a new hair salon.',
-        description:
-        "You can add a new hair salon using this path.",
+        description: 'You can add a new hair salon using this path.',
     })
     @ApiConsumes('multipart/form-data')
     @ApiBody({
@@ -32,15 +41,22 @@ export class HairSalonController {
     })
     @ApiCreatedResponse({
         type: CreatedHairSalon,
-        description:
-        '',
+        description: '',
     })
+    @UseGuards(JwtAuthGuard)
     @Post()
     @FormDataRequest()
-    create(@Body() createHairSalonDto: CreateHairSalonDto) {
-        return this.hairSalonService.create(createHairSalonDto);
+    create(@Req() req, @Body() createHairSalonDto: CreateHairSalonDto) {
+        return this.hairSalonService.create(req.user.id, createHairSalonDto);
     }
 
+    @ApiOperation({
+        summary: 'Establishing a new hair salon.',
+        description: 'You can add a new hair salon using this path.',
+    })
+    @ApiOkResponse({
+        type: [HairSalon],
+    })
     @Get()
     findAll() {
         return this.hairSalonService.findAll();

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreatedHairSalon {
+export class CompletedHairSalon {
     @ApiProperty({
         example: 1,
     })
@@ -28,4 +28,10 @@ export class CreatedHairSalon {
 
     @ApiProperty({ example: '/static/upload/example.png' })
     image: string;
+
+    // turns: Turn[];
+
+    // user: User;
+
+    // comments: Comment[];
 }

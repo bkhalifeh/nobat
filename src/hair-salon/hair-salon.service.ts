@@ -7,20 +7,25 @@ import { Repository } from 'typeorm';
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { IdType } from 'src/database/custome.id';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class HairSalonService {
     constructor(
         @InjectRepository(HairSalon)
         private hairSalonRepository: Repository<HairSalon>,
+        private readonly userService: UserService,
     ) {}
 
-    create(createHairSalonDto: CreateHairSalonDto) {
+    async create(userId: IdType, createHairSalonDto: CreateHairSalonDto) {
         const { image, ...res } = createHairSalonDto;
+        const user = await this.userService.findOne(userId);
         const newHairSalon = this.hairSalonRepository.create({
             ...res,
             image: `/static/upload/${createHairSalonDto.image.originalName}`,
+            user,
         });
+
         writeFileSync(
             join(
                 __dirname,
@@ -32,11 +37,28 @@ export class HairSalonService {
             ),
             createHairSalonDto.image.buffer,
         );
-        return this.hairSalonRepository.save(newHairSalon);
+        user.hairSalon = await this.hairSalonRepository.save({
+            ...newHairSalon,
+        });
+        await this.userService.save(user);
+        return user.hairSalon;
     }
 
     findAll() {
         return this.hairSalonRepository.find();
+    }
+
+    findOneAndFetchComment(id: IdType) {
+        this.hairSalonRepository.findOne({
+            where: {
+                id
+            },
+            relations: {
+                comments: {
+                    author: true,
+                },
+            }
+        })
     }
 
     findOne(id: IdType) {
@@ -45,7 +67,9 @@ export class HairSalonService {
                 id,
             },
             relations: {
-                comments: true,
+                comments: {
+                    author: true,
+                },
                 turns: true,
                 user: true,
             },
