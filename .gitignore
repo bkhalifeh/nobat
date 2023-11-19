@@ -37,3 +37,6 @@ package-lock.json
 
 # sqlite3 database
 nobat
+
+# static upload files
+static/upload/
