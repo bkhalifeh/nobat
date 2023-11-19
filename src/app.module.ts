@@ -18,6 +18,9 @@ import { SmsModule } from './sms/sms.module';
 import { TurnModule } from './turn/turn.module';
 import { HairSalonModule } from './hair-salon/hair-salon.module';
 import throttleFactory from './factory/throttle.factory';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
 @Module({
     imports: [
         ConfigModule.forRoot({ isGlobal: true }),
@@ -27,6 +30,7 @@ import throttleFactory from './factory/throttle.factory';
             useFactory: typeormFactory,
             inject: [ConfigService],
         }),
+
         // CacheModule.registerAsync({
         //     imports: [ConfigModule],
         //     useFactory: redisFactory,
@@ -36,6 +40,10 @@ import throttleFactory from './factory/throttle.factory';
             imports: [ConfigModule],
             useFactory: throttleFactory,
             inject: [ConfigService],
+        }),
+        ServeStaticModule.forRoot({
+            rootPath: join(__dirname, '..', 'static'),
+            serveRoot: '/static',
         }),
         UserModule,
         AuthModule,
