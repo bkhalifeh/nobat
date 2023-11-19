@@ -7,7 +7,7 @@ import { HttpModule } from '@nestjs/axios';
         HttpModule.register({
             headers: {
                 Authorization:
-                    'AccessKey gbKmp4KuNJbmc6_G6i8RNaqxEIX8rpbq1F-LIvgy5VI=',
+                    'AccessKey f0sZUQs63-x3eCdd384glCbzdip49w0Ouo-XM8LXzjI=',
             },
         }),
     ],

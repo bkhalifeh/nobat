@@ -1,26 +1,23 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { CreateSmDto } from './dto/create-sm.dto';
-import { UpdateSmDto } from './dto/update-sm.dto';
 
 @Injectable()
 export class SmsService {
-    create(createSmDto: CreateSmDto) {
-        return 'This action adds a new sm';
-    }
+    constructor(private readonly httpService: HttpService) {}
 
-    findAll() {
-        return `This action returns all sms`;
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} sm`;
-    }
-
-    update(id: number, updateSmDto: UpdateSmDto) {
-        return `This action updates a #${id} sm`;
-    }
-
-    remove(id: number) {
-        return `This action removes a #${id} sm`;
+    async sendVerifyCode(phoneNumber: string, code: string) {
+        const res = await this.httpService.axiosRef.post(
+            // 'https://api2.ippanel.com/api/v1/sms/pattern/normal/send',
+            'http://rest.ippanel.com/v1/messages/patterns/send',
+            {
+                pattern_code: 's3zzqx5hqwfo5pj',
+                originator: '+983000505',
+                recipient: `+98${phoneNumber}`,
+                values: {
+                    code,
+                },
+            },
+        );
+        return res.data;
     }
 }
