@@ -40,7 +40,16 @@ export class HairSalonService {
     }
 
     findOne(id: IdType) {
-        return this.hairSalonRepository.findOneBy({ id });
+        return this.hairSalonRepository.findOne({
+            where: {
+                id
+            },
+            relations: {
+                comments: true,
+                turns: true,
+                user: true
+            }
+        });
     }
 
     // update(id: number, updateHairSalonDto: UpdateHairSalonDto) {
