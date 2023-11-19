@@ -1,3 +1,4 @@
+import { Comment } from 'src/comment/entities/comment.entity';
 import { CustomeEntity } from 'src/database/custome.entity';
 import { HairSalon } from 'src/hair-salon/entities/hair-salon.entity';
 import { Turn } from 'src/turn/entities/turn.entity';
@@ -29,4 +30,7 @@ export class User extends CustomeEntity {
     })
     @JoinColumn()
     hairSalon: HairSalon;
+
+    @OneToMany(() => Comment, (comment) => comment.author)
+    comments: Comment[];
 }
