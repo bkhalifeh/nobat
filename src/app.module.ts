@@ -20,6 +20,7 @@ import { HairSalonModule } from './hair-salon/hair-salon.module';
 import throttleFactory from './factory/throttle.factory';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
     imports: [
@@ -50,6 +51,7 @@ import { join } from 'path';
         SmsModule,
         TurnModule,
         HairSalonModule,
+        CommentModule,
     ],
     controllers: [AppController],
     providers: [AppService],
