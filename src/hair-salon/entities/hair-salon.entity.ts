@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Comment } from 'src/comment/entities/comment.entity';
 import { CustomeEntity } from 'src/database/custome.entity';
 import { Turn } from 'src/turn/entities/turn.entity';
@@ -19,7 +20,7 @@ export class HairSalon extends CustomeEntity {
     image: string;
 
     @Column({ default: 0 })
-    score: string;
+    score: number;
 
     @OneToMany(() => Turn, (turn) => turn.hairSalon)
     turns: Turn[];
