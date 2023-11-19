@@ -11,7 +11,7 @@ import { HairSalonService } from './hair-salon.service';
 import { CreateHairSalonDto } from './dto/create-hair-salon.dto';
 import { UpdateHairSalonDto } from './dto/update-hair-salon.dto';
 import { FormDataRequest } from 'nestjs-form-data';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('hair-salon')
 @Controller('hair-salon')
@@ -19,6 +19,7 @@ export class HairSalonController {
     constructor(private readonly hairSalonService: HairSalonService) {}
 
     @Post()
+    @ApiConsumes('multipart/form-data')
     @FormDataRequest()
     create(@Body() createHairSalonDto: CreateHairSalonDto) {
         return this.hairSalonService.create(createHairSalonDto);

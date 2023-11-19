@@ -10,7 +10,6 @@ import { IdType } from 'src/database/custome.id';
 
 @Injectable()
 export class HairSalonService {
-
     constructor(
         @InjectRepository(HairSalon)
         private hairSalonRepository: Repository<HairSalon>,
@@ -20,7 +19,7 @@ export class HairSalonService {
         const { image, ...res } = createHairSalonDto;
         const newHairSalon = this.hairSalonRepository.create({
             ...res,
-            image: `/static/upload/${createHairSalonDto.image.originalName}`
+            image: `/static/upload/${createHairSalonDto.image.originalName}`,
         });
         writeFileSync(
             join(

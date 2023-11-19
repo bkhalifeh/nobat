@@ -5,10 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HairSalon } from './entities/hair-salon.entity';
 import { NestjsFormDataModule } from 'nestjs-form-data';
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([HairSalon]),
-        NestjsFormDataModule
-    ],
+    imports: [TypeOrmModule.forFeature([HairSalon]), NestjsFormDataModule],
     controllers: [HairSalonController],
     providers: [HairSalonService],
 })

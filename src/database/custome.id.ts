@@ -13,7 +13,6 @@ export function IdColumn() {
     }
 }
 
-
 export type IdType = number | ObjectId | string;
 
 export function parseId(id: any): IdType {
