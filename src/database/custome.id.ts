@@ -13,4 +13,13 @@ export function IdColumn() {
     }
 }
 
+
 export type IdType = number | ObjectId | string;
+
+export function parseId(id: any): IdType {
+    if (process.env.DB_TYPE === 'mongodb') {
+        return String(id);
+    } else {
+        return Number(id);
+    }
+}
