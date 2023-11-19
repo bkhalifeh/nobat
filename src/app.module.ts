@@ -21,6 +21,7 @@ import throttleFactory from './factory/throttle.factory';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { CommentModule } from './comment/comment.module';
+import { VerifyCodeModule } from './verify-code/verify-code.module';
 
 @Module({
     imports: [
@@ -52,6 +53,7 @@ import { CommentModule } from './comment/comment.module';
         TurnModule,
         HairSalonModule,
         CommentModule,
+        VerifyCodeModule,
     ],
     controllers: [AppController],
     providers: [AppService],
