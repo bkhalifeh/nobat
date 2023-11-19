@@ -1,9 +1,17 @@
 import { Module } from '@nestjs/common';
 import { SmsService } from './sms.service';
-import { SmsController } from './sms.controller';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-    controllers: [SmsController],
+    imports: [
+        HttpModule.register({
+            headers: {
+                Authorization:
+                    'AccessKey gbKmp4KuNJbmc6_G6i8RNaqxEIX8rpbq1F-LIvgy5VI=',
+            },
+        }),
+    ],
     providers: [SmsService],
+    exports: [SmsService],
 })
 export class SmsModule {}
