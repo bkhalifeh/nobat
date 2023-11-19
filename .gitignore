@@ -34,3 +34,6 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 package-lock.json
+
+# sqlite3 database
+nobat
