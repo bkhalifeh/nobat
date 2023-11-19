@@ -21,7 +21,7 @@ export default (
         return {
             type: dbType,
             database: configService.get<string>('DB_NAME'),
-            synchronize: false,
+            synchronize: true,
             entities,
             logging: 'all',
         };
