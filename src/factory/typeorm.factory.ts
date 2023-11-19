@@ -7,6 +7,7 @@ import { User } from 'src/user/entities/user.entity';
 import { Turn } from 'src/turn/entities/turn.entity';
 import { HairSalon } from 'src/hair-salon/entities/hair-salon.entity';
 import { Comment } from 'src/comment/entities/comment.entity';
+import { VerifyCode } from 'src/verify-code/entities/verify-code.entity';
 
 export default (
     configService: ConfigService,
@@ -15,7 +16,7 @@ export default (
     | PostgresConnectionOptions
     | SqliteConnectionOptions
     | MysqlConnectionOptions => {
-    const entities = [User, Turn, HairSalon, Comment];
+    const entities = [User, Turn, HairSalon, Comment, VerifyCode];
     const dbType = configService.get<string>('DB_TYPE');
     if (dbType === 'sqlite') {
         return {
