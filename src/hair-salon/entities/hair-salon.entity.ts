@@ -8,6 +8,18 @@ export class HairSalon extends CustomeEntity {
     @Column({ unique: true })
     name: string;
 
+    @Column()
+    description: string;
+
+    @Column()
+    address: string;
+
+    @Column()
+    image: string;
+
+    @Column({ default: 0 })
+    score: string;
+
     @OneToMany(() => Turn, (turn) => turn.hairSalon)
     turns: Turn[];
 
