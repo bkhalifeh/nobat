@@ -35,10 +35,7 @@ export class CommentController {
 
     @UseGuards(JwtAuthGuard)
     @Get(':hairSalonId')
-    getComments(
-        @Req() req,
-        @Param('hairSalonId') hairSalonId: string,
-    ) {
+    getComments(@Req() req, @Param('hairSalonId') hairSalonId: string) {
         return this.commentService.findAllByHairSalon(hairSalonId);
     }
 

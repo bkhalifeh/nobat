@@ -16,16 +16,28 @@ export class CommentService {
         private readonly userService: UserService,
         private readonly hairSalonService: HairSalonService,
     ) {}
-    async create(userId: IdType, hairSalonId: IdType, createCommentDto: CreateCommentDto) {
+    async create(
+        userId: IdType,
+        hairSalonId: IdType,
+        createCommentDto: CreateCommentDto,
+    ) {
         const user = await this.userService.findOne(userId);
         const hairSalon = await this.hairSalonService.findOne(hairSalonId);
 
-        const newComment = this.commentRepository.create({
+        let newComment = this.commentRepository.create({
             content: createCommentDto.content,
             author: user,
-            hairSalon
+            hairSalon,
         });
-        return this.commentRepository.save(newComment);
+        newComment = await this.commentRepository.save(newComment);
+
+        user.comments.push(newComment);
+        await this.userService.save(user);
+
+        hairSalon.comments.push(newComment);
+        await this.hairSalonService.save(hairSalon);
+
+        return newComment;
     }
 
     findAllByHairSalon(id: IdType) {

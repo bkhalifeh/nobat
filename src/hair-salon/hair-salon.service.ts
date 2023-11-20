@@ -51,14 +51,14 @@ export class HairSalonService {
     findOneAndFetchComment(id: IdType) {
         this.hairSalonRepository.findOne({
             where: {
-                id
+                id,
             },
             relations: {
                 comments: {
                     author: true,
                 },
-            }
-        })
+            },
+        });
     }
 
     findOne(id: IdType) {
@@ -74,6 +74,10 @@ export class HairSalonService {
                 user: true,
             },
         });
+    }
+
+    save(hairSalon: HairSalon) {
+        return this.hairSalonRepository.save(hairSalon);
     }
 
     // update(id: number, updateHairSalonDto: UpdateHairSalonDto) {
