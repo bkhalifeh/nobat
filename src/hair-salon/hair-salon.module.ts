@@ -13,5 +13,6 @@ import { UserModule } from 'src/user/user.module';
     ],
     controllers: [HairSalonController],
     providers: [HairSalonService],
+    exports: [HairSalonService],
 })
 export class HairSalonModule {}
