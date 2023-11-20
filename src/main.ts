@@ -14,7 +14,7 @@ async function bootstrap() {
 
     app.enableCors();
     app.disable('x-powered-by');
-    app.useGlobalPipes(new ValidationPipe());
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
     app.use(morgan('dev'));
     app.use(helmet());
 
@@ -22,7 +22,6 @@ async function bootstrap() {
         .setTitle('Nobat')
         .setDescription('The nobat API description')
         .setVersion('1.0')
-        // .addTag('cats')
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup('api', app, document);
