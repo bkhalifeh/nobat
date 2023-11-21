@@ -28,9 +28,6 @@ export class TurnController {
     @UseGuards(JwtAuthGuard)
     @Patch(':id')
     selectTurn(@Param('id') tid: string, @Req() req) {
-        return this.turnService.selectTurn(
-            parseId(tid),
-            parseId(req.user.id)
-        );
+        return this.turnService.selectTurn(parseId(tid), parseId(req.user.id));
     }
 }
