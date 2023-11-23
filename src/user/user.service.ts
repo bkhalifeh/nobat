@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
 import { IdType } from 'src/database/custome.id';
+import { UserUpdateResponse } from './response/successful/user.update.response';
 
 @Injectable()
 export class UserService {
@@ -17,15 +18,21 @@ export class UserService {
     }
 
     findOne(id: IdType) {
-        return this.usersRepository.findOneBy({ id });
+        return this.usersRepository.findOne({ where: { id } });
     }
 
     findOneByPhoneNumber(phoneNumber: string) {
         return this.usersRepository.findOneBy({ phoneNumber });
     }
 
-    update(id: IdType, updateUserDto: UpdateUserDto) {
-        return this.usersRepository.update(id, updateUserDto);
+    async update(id: IdType, updateUserDto: UpdateUserDto) {
+        const updateResult = await this.usersRepository.update(
+            id,
+            updateUserDto,
+        );
+        if (updateResult && updateResult.affected === 1) {
+            return UserUpdateResponse.getInstance();
+        }
     }
 
     verifyByPhoneNumber(phoneNumber: string) {

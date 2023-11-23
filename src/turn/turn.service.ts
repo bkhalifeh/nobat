@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotImplementedException } from '@nestjs/common';
 import { CreateTurnDto } from './dto/create-turn.dto';
 import { UpdateTurnDto } from './dto/update-turn.dto';
 import { HairSalonService } from 'src/hair-salon/hair-salon.service';
@@ -17,15 +17,23 @@ export class TurnService {
         private readonly userService: UserService,
     ) {}
 
-    async create(createTurnDto: CreateTurnDto) {
+    async create(userId: IdType, createTurnDto: CreateTurnDto): Promise<Turn> {
         const hairSalon = await this.hairSalonService.findOne(
             parseId(createTurnDto.hairSalonId),
         );
-        const newTurn = this.turnsRepository.create({
-            hairSalon,
-            appointment: createTurnDto.appointment,
-        });
-        return this.turnsRepository.save(newTurn);
+        const user = await this.userService.findOne(userId);
+        if (user.hairSalonId === hairSalon.id) {
+            let newTurn = this.turnsRepository.create({
+                hairSalon,
+                appointment: createTurnDto.appointment,
+            });
+            newTurn = await this.turnsRepository.save(newTurn);
+            hairSalon.turns.push(newTurn);
+            this.hairSalonService.save(hairSalon);
+            return newTurn;
+        } else {
+            throw new NotImplementedException();
+        }
     }
 
     async selectTurn(tid: IdType, uid: IdType) {
@@ -45,7 +53,7 @@ export class TurnService {
             await this.userService.save(user);
             return turn;
         } else {
-            return 'this turn selected';
+            throw new NotImplementedException();
         }
     }
 }

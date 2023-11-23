@@ -20,6 +20,7 @@ export class HairSalonService {
     async create(userId: IdType, createHairSalonDto: CreateHairSalonDto) {
         const { image, ...res } = createHairSalonDto;
         const user = await this.userService.findOne(userId);
+
         const newHairSalon = this.hairSalonRepository.create({
             ...res,
             image: `/static/upload/${createHairSalonDto.image.originalName}`,
@@ -74,6 +75,10 @@ export class HairSalonService {
                 user: true,
             },
         });
+    }
+
+    findOneLimited(id: IdType) {
+        return this.hairSalonRepository.findOneBy({ id });
     }
 
     save(hairSalon: HairSalon) {
