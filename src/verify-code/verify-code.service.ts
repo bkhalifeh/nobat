@@ -20,7 +20,7 @@ export class VerifyCodeService {
         const code = this.utilService
             .randomNumber(1, 999999)
             .toString()
-            .padStart(6);
+            .padStart(6, '0');
         if (verifyCode) {
             throw new NotImplementedException(
                 'VerifyCodeService - getVerifyCode',

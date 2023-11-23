@@ -29,6 +29,7 @@ export class CreateHairSalonResponse {
     status: string;
 
     constructor(hairSalon: HairSalon) {
+        this.id = hairSalon.id.toString();
         this.image = hairSalon.image;
         this.message = 'Registration of your hair salon was successful.';
         this.status = 'ok';

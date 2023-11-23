@@ -13,7 +13,7 @@ import { UserService } from 'src/user/user.service';
 export class HairSalonService {
     constructor(
         @InjectRepository(HairSalon)
-        private hairSalonRepository: Repository<HairSalon>,
+        private readonly hairSalonRepository: Repository<HairSalon>,
         private readonly userService: UserService,
     ) {}
 

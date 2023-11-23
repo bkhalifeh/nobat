@@ -50,16 +50,17 @@ export class CommentController {
     })
     @UseGuards(JwtAuthGuard)
     @Post(':hairSalonId')
-    create(
+    async create(
         @Req() req,
         @Param('hairSalonId') hairSalonId: string,
         @Body() createCommentDto: CreateCommentDto,
     ) {
-        return this.commentService.create(
+        const newComment = await this.commentService.create(
             parseId(req.user.id),
             parseId(hairSalonId),
             createCommentDto,
         );
+        return new CreateCommentResponse(newComment);
     }
 
     // @UseGuards(JwtAuthGuard)

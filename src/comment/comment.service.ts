@@ -30,7 +30,9 @@ export class CommentService {
             hairSalon,
         });
         newComment = await this.commentRepository.save(newComment);
-
+        if (!user.comments) {
+            user.comments = [];
+        }
         user.comments.push(newComment);
         await this.userService.save(user);
 

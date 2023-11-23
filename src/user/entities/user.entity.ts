@@ -30,10 +30,12 @@ export class User extends CustomeEntity {
     @Column({ default: false })
     isVerified: boolean;
 
-    @OneToMany(() => Turn, (turn) => turn.user)
+    @OneToMany(() => Turn, (turn) => turn.user, {
+        nullable: true
+    })
     turns: Turn[];
 
-    @Column()
+    @Column({ nullable: true })
     hairSalonId: IdType;
 
     @OneToOne(() => HairSalon, (hairSalon) => hairSalon.user, {
@@ -43,6 +45,8 @@ export class User extends CustomeEntity {
     @JoinColumn()
     hairSalon: HairSalon;
 
-    @OneToMany(() => Comment, (comment) => comment.author)
+    @OneToMany(() => Comment, (comment) => comment.author, {
+        nullable: true
+    })
     comments: Comment[];
 }
