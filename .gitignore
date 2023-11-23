@@ -42,3 +42,4 @@ nobat.db
 
 # static upload files
 static/upload/
+dist/
