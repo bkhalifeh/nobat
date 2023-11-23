@@ -33,7 +33,7 @@ import { HairSalonResponse } from './responses/success/hair.salon.response';
 export class HairSalonController {
     constructor(private readonly hairSalonService: HairSalonService) {}
 
-    @ApiBearerAuth()
+    @ApiBearerAuth('Authorization')
     @ApiConsumes('multipart/form-data')
     @ApiOperation({
         summary: 'Adding a hair salon',

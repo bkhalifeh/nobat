@@ -15,7 +15,8 @@ import { UserResponse } from './response/successful/user.response';
 import { UserUpdateResponse } from './response/successful/user.update.response';
 
 @ApiTags('user')
-@ApiBearerAuth()
+@ApiBearerAuth('Authorization')
+@UseGuards(JwtAuthGuard)
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
@@ -30,7 +31,6 @@ export class UserController {
         description:
             'If everything is correct, it returns an object of the UserInfoResponse class containing information about the user.',
     })
-    @UseGuards(JwtAuthGuard)
     @Get()
     async getUser(@Req() req): Promise<UserResponse> {
         const user = await this.userService.findOne(req.user.id);
@@ -52,7 +52,6 @@ export class UserController {
         description:
             'If everything goes correctly, an object of the UserUpdateResponse class will be sent.',
     })
-    @UseGuards(JwtAuthGuard)
     @Patch()
     async update(
         @Req() req,

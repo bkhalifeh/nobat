@@ -27,11 +27,13 @@ import { CreateTurnResponse } from './responses/successful/create.turn.response'
 import { SelectTurnResponse } from './responses/successful/select.turn.response';
 
 @ApiTags('turn')
+@ApiBearerAuth('Authorization')
+@UseGuards(JwtAuthGuard)
 @Controller('turn')
 export class TurnController {
     constructor(private readonly turnService: TurnService) {}
 
-    @ApiBearerAuth()
+
     @ApiOperation({
         summary: 'Adding a new turn',
         description:
@@ -47,7 +49,6 @@ export class TurnController {
         description:
             'If the turn registration is successful, an object of the CreateTurnResponse class is sent, providing information about the turn.',
     })
-    @UseGuards(JwtAuthGuard)
     @Post()
     async create(@Req() req, @Body() createTurnDto: CreateTurnDto) {
         const turn = await this.turnService.create(
@@ -57,7 +58,7 @@ export class TurnController {
         return new CreateTurnResponse(turn);
     }
 
-    @ApiBearerAuth()
+
     @ApiOperation({
         summary: 'Turn reservation',
         description:
@@ -74,7 +75,6 @@ export class TurnController {
         description:
             'If the turn reservation is successful, an object of the SelectTurnResponse class is sent, which contains the status and message."',
     })
-    @UseGuards(JwtAuthGuard)
     @Patch('select/:id')
     async selectTurn(
         @Param('id') id: string,

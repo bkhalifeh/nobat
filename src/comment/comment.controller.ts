@@ -29,7 +29,7 @@ import { CreateCommentResponse } from './responses/successful/create.comment.res
 export class CommentController {
     constructor(private readonly commentService: CommentService) {}
 
-    @ApiBearerAuth()
+    @ApiBearerAuth('Authorization')
     @ApiOperation({
         summary: 'Submit a comment',
         description: 'By sending appropriate data using the POST method, you can express your opinion about the hair salon.'
