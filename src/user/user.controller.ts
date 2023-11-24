@@ -40,7 +40,7 @@ export class UserController {
     @ApiOperation({
         summary: "Assigning or changing the user's first and last name.",
         description:
-            'By sending a POST request to this path, you can initialize or modify user information.',
+            'By sending a PATCH request to this path, you can initialize or modify user information.',
     })
     @ApiBody({
         type: UpdateUserDto,
