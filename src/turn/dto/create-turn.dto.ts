@@ -4,6 +4,7 @@ import { IdType } from 'src/database/custome.id';
 
 export class CreateTurnDto {
     @ApiProperty({
+        type: Number,
         description:
             'The time of the appointment you want to add (of type Date).',
         example: 1700561120528,
