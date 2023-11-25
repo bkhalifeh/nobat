@@ -1,22 +1,23 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Comment } from "src/comment/entities/comment.entity";
-import { UserResponse } from "src/user/response/successful/user.response";
+import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from 'src/comment/entities/comment.entity';
+import { UserResponse } from 'src/user/response/successful/user.response';
 
 export class CommentResponse {
     @ApiProperty({
         description: 'The ID of this comment is in the database.',
-        example: '1'
+        example: '1',
     })
     id: string;
 
     @ApiProperty({
         description: 'The comment content is placed in this field.',
-        example: 'Hello World!'
+        example: 'Hello World!',
     })
     content: string;
 
     @ApiProperty({
-        description: 'The information related to the comment author is placed in this field.',
+        description:
+            'The information related to the comment author is placed in this field.',
     })
     author: UserResponse;
 
@@ -26,6 +27,6 @@ export class CommentResponse {
     }
 
     static fromArray(comment: Comment[]) {
-        return comment.map(c => new CommentResponse(c));
+        return comment.map((c) => new CommentResponse(c));
     }
 }

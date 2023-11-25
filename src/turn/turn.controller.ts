@@ -33,7 +33,6 @@ import { SelectTurnResponse } from './responses/successful/select.turn.response'
 export class TurnController {
     constructor(private readonly turnService: TurnService) {}
 
-
     @ApiOperation({
         summary: 'Adding a new turn',
         description:
@@ -57,7 +56,6 @@ export class TurnController {
         );
         return new CreateTurnResponse(turn);
     }
-
 
     @ApiOperation({
         summary: 'Turn reservation',

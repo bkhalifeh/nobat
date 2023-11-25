@@ -41,5 +41,5 @@ package-lock.json
 nobat.db
 
 # static upload files
-static/upload/
+# static/upload/
 dist/

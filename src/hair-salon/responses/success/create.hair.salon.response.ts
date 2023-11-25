@@ -2,15 +2,16 @@ import { ApiProperty } from '@nestjs/swagger';
 import { HairSalon } from 'src/hair-salon/entities/hair-salon.entity';
 
 export class CreateHairSalonResponse {
-
     @ApiProperty({
-        description: 'The ID of the created hair salon in the database is stored here.',
-        example: '1'
+        description:
+            'The ID of the created hair salon in the database is stored here.',
+        example: '1',
     })
     id: string;
 
     @ApiProperty({
-        description: 'The path of the image you have registered for your hair salon.',
+        description:
+            'The path of the image you have registered for your hair salon.',
         example: '/static/upload/example.png',
     })
     image: string;

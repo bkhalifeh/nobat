@@ -1,3 +1,1 @@
-export class HairSalonInfoResponse {
-    
-}
+export class HairSalonInfoResponse {}

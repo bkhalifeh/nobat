@@ -8,6 +8,7 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { IdType } from 'src/database/custome.id';
 import { UserService } from 'src/user/user.service';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class HairSalonService {
@@ -15,6 +16,7 @@ export class HairSalonService {
         @InjectRepository(HairSalon)
         private readonly hairSalonRepository: Repository<HairSalon>,
         private readonly userService: UserService,
+        private readonly configService: ConfigService,
     ) {}
 
     async create(userId: IdType, createHairSalonDto: CreateHairSalonDto) {
@@ -23,7 +25,9 @@ export class HairSalonService {
 
         const newHairSalon = this.hairSalonRepository.create({
             ...res,
-            image: `/static/upload/${createHairSalonDto.image.originalName}`,
+            image: `${this.configService.get<string>(
+                'BASE_URL',
+            )}/static/upload/${createHairSalonDto.image.originalName}`,
             user,
         });
 

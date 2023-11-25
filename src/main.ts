@@ -6,11 +6,21 @@ import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
 
 async function bootstrap() {
     const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
     const configService = app.get(ConfigService);
+
+    // if(!existsSync(join(__dirname, '..', 'static'))) {
+    //     mkdirSync(join(__dirname, '..', 'static'));
+    //     mkdirSync(join(__dirname, '..', 'static', 'upload'));
+    // }
+    // if(!existsSync(join(__dirname, '..', 'static', 'upload'))) {
+    //     mkdirSync(join(__dirname, '..', 'static', 'upload'));
+    // }
 
     app.enableCors();
     app.disable('x-powered-by');

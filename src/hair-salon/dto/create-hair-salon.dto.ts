@@ -9,7 +9,8 @@ export class CreateHairSalonDto {
     name: string;
 
     @ApiProperty({
-        description: 'Put some descriptions about the hair salon in this field.',
+        description:
+            'Put some descriptions about the hair salon in this field.',
         example: 'I am the best hair stylist.',
     })
     description: string;
@@ -22,7 +23,8 @@ export class CreateHairSalonDto {
 
     @ApiProperty({
         type: 'string',
-        description: 'An image for introducing the hair salon is placed in this field.',
+        description:
+            'An image for introducing the hair salon is placed in this field.',
         format: 'binary',
     })
     image: MemoryStoredFile;

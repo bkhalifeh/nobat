@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Comment } from "src/comment/entities/comment.entity";
+import { ApiProperty } from '@nestjs/swagger';
+import { Comment } from 'src/comment/entities/comment.entity';
 
 export class CreateCommentResponse {
     // private static instance: CreateCommentResponse;
@@ -19,10 +19,9 @@ export class CreateCommentResponse {
 
     @ApiProperty({
         description: 'The ID of this comment is in the database.',
-        example: '1'
+        example: '1',
     })
     id: string;
-
 
     constructor(comment: Comment) {
         this.id = comment.id.toString();

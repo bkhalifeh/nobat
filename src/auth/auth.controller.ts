@@ -19,35 +19,42 @@ export class AuthController {
 
     @ApiOperation({
         summary: 'Send verification code',
-        description: 'Enter your phone number (without 98) in the URL to receive the verification code.'
+        description:
+            'Enter your phone number (without 98) in the URL to receive the verification code.',
     })
     @ApiParam({
         type: String,
         name: 'phoneNumber',
         description: 'The phone number you want to send the message to.',
-        example: '9179056283'
+        example: '9179056283',
     })
     @ApiOkResponse({
         type: SendedVerifyCodeResponse,
-        description: 'If the verification code is successfully sent, an object of the SendedVerifyCodeResponse class will be sent.'
+        description:
+            'If the verification code is successfully sent, an object of the SendedVerifyCodeResponse class will be sent.',
     })
     @Get('send-verify-code/:phoneNumber')
-    async sendVerifyCode(@Param('phoneNumber') phoneNumber: string): Promise<SendedVerifyCodeResponse> {
+    async sendVerifyCode(
+        @Param('phoneNumber') phoneNumber: string,
+    ): Promise<SendedVerifyCodeResponse> {
         await this.authService.sendVerifyCode(phoneNumber);
         return SendedVerifyCodeResponse.getInstance();
     }
 
     @ApiOperation({
         summary: 'Check of the accuracy of the verification code.',
-        description: 'By sending the verification code and phone number to this path, you can confirm it.'
+        description:
+            'By sending the verification code and phone number to this path, you can confirm it.',
     })
     @ApiBody({
         type: VerifyCodeAuthDto,
-        description: 'To confirm, you need to send an object of the VerifyCodeAuthDto class, which contains the verification code and phone number.',
+        description:
+            'To confirm, you need to send an object of the VerifyCodeAuthDto class, which contains the verification code and phone number.',
     })
     @ApiCreatedResponse({
         type: VerifiedCodeResponse,
-        description: 'If the verification is successful, an object of the VerifiedCodeResponse class will be sent, which contains a successful operation message.',
+        description:
+            'If the verification is successful, an object of the VerifiedCodeResponse class will be sent, which contains a successful operation message.',
     })
     @Post('verify-code')
     verifyCode(@Body() verifyCodeAuthDto: VerifyCodeAuthDto) {

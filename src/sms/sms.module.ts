@@ -6,8 +6,7 @@ import { HttpModule } from '@nestjs/axios';
     imports: [
         HttpModule.register({
             headers: {
-                apikey:
-                    'gbKmp4KuNJbmc6_G6i8RNaqxEIX8rpbq1F-LIvgy5VI=',
+                apikey: 'gbKmp4KuNJbmc6_G6i8RNaqxEIX8rpbq1F-LIvgy5VI=',
             },
         }),
     ],

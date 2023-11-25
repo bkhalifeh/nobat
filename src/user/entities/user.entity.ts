@@ -31,7 +31,7 @@ export class User extends CustomeEntity {
     isVerified: boolean;
 
     @OneToMany(() => Turn, (turn) => turn.user, {
-        nullable: true
+        nullable: true,
     })
     turns: Turn[];
 
@@ -46,7 +46,7 @@ export class User extends CustomeEntity {
     hairSalon: HairSalon;
 
     @OneToMany(() => Comment, (comment) => comment.author, {
-        nullable: true
+        nullable: true,
     })
     comments: Comment[];
 }

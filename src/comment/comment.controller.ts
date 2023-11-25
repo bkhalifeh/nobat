@@ -32,21 +32,25 @@ export class CommentController {
     @ApiBearerAuth('Authorization')
     @ApiOperation({
         summary: 'Submit a comment',
-        description: 'By sending appropriate data using the POST method, you can express your opinion about the hair salon.'
+        description:
+            'By sending appropriate data using the POST method, you can express your opinion about the hair salon.',
     })
     @ApiParam({
         type: String,
         name: 'hairSalonId',
-        description: 'The ID of the hair salon you want to submit your comment about.',
-        example: '1'
+        description:
+            'The ID of the hair salon you want to submit your comment about.',
+        example: '1',
     })
     @ApiBody({
         type: CreateCommentDto,
-        description: 'By sending an object of the CreateCommentDto class, you can submit a comment about the hair salon.'
+        description:
+            'By sending an object of the CreateCommentDto class, you can submit a comment about the hair salon.',
     })
     @ApiCreatedResponse({
         type: CreateCommentResponse,
-        description: 'If the comment is successfully submitted, an object of the CreateCommentResponse class will be sent.'
+        description:
+            'If the comment is successfully submitted, an object of the CreateCommentResponse class will be sent.',
     })
     @UseGuards(JwtAuthGuard)
     @Post(':hairSalonId')

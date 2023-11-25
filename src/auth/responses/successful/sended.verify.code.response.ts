@@ -1,11 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class SendedVerifyCodeResponse {
     private static instance: SendedVerifyCodeResponse;
 
     @ApiProperty({
         description: 'It is a message that explains the response status.',
-        example: 'The verification code has been successfully sent to the mobile phone.',
+        example:
+            'The verification code has been successfully sent to the mobile phone.',
     })
     message: string;
 
@@ -17,7 +18,8 @@ export class SendedVerifyCodeResponse {
     status: string;
 
     private constructor() {
-        this.message = 'The verification code has been successfully sent to the phone number.';
+        this.message =
+            'The verification code has been successfully sent to the phone number.';
         this.status = 'ok';
     }
 
