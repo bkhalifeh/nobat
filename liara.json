@@ -1,0 +1,8 @@
+{
+    "disks": [
+        {
+            "name": "nobat-disk",
+            "mountTo": "static/upload"
+        }
+    ]
+}
