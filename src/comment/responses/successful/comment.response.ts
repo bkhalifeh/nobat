@@ -24,6 +24,7 @@ export class CommentResponse {
     constructor(comment: Comment) {
         this.id = comment.id.toString();
         this.author = new UserResponse(comment.author);
+        this.content = comment.content;
     }
 
     static fromArray(comment: Comment[]) {
